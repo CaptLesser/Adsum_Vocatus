@@ -1,53 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adsum Vocatus</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adsum Vocatus</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Adsum Vocatus — a design branch of our Bonfire storefront: grim sigils, stark motifs, and merch-ready visuals." />
+  <meta name="keywords" content="Adsum Vocatus, sigils, punk, grunge, occult, merch, bonfire, band art" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Adsum Vocatus" />
+  <meta property="og:description" content="A minimal, modern showcase with links to About and Demons." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/Adsum_Vocatus2.png" />
+  <meta property="og:url" content="https://YOUR_USER.github.io/Adsum_Vocatus/" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/Adsum_Vocatus2.png" />
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="assets/logo.png" alt="Adsum Vocatus Logo" class="logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="demons.html">Demons</a></li>
-                <li><a href="https://www.bonfire.com/store/yourstore" target="_blank">Store</a></li>
-                <li><a href="https://instagram.com/yourbrand" target="_blank">Instagram</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Top Ad Slot (ready for plugin/script) -->
+  <div class="ad-slot ad-top" aria-label="advertisement" role="complementary">
+    <!-- Example: your ad provider script will inject here -->
+  </div>
 
-    <section class="hero">
-        <div class="hero-overlay">
-            <h1>Summon the Dark</h1>
-            <p>Gothic art and demonology designs to adorn the mortal realm.</p>
+  <header class="site-header">
+    <a class="brand" href="./">
+      <img src="assets/Adsum_Vocatus8.png" alt="Adsum Vocatus sigil" width="64" height="64" />
+      <span>Adsum Vocatus</span>
+    </a>
+
+    <nav class="site-nav" aria-label="primary">
+      <a href="about.html">About</a>
+      <a href="demons.html">Demons</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-inner">
+        <h1>Adsum Vocatus</h1>
+        <p class="tagline">Occult • Gothic • Summon</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="about.html">About the Project</a>
+          <a class="btn btn-ghost" href="demons.html">Explore Demons</a>
         </div>
+      </div>
     </section>
 
-    <main>
-        <section class="featured">
-            <h2>Featured Designs</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="assets/sample1.png" alt="Design 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/sample2.png" alt="Design 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/sample3.png" alt="Design 3">
-                </div>
-            </div>
-        </section>
-    </main>
+    <!-- Mid-page Ad Slot -->
+    <div class="ad-slot ad-mid" aria-label="advertisement" role="complementary"></div>
 
-    <footer>
-        <p>&copy; 2025 Adsum Vocatus. All rights reserved.</p>
-    </footer>
+    <section class="gallery" aria-label="featured works">
+      <article class="card">
+        <img src="assets/Adsum_Vocatus2.png" alt="Adsum Vocatus variant 2" loading="lazy" />
+      </article>
+      <article class="card">
+        <img src="assets/Murmur4.png" alt="Man with griffin and trumpets" loading="lazy" />
+      </article>
+      <article class="card">
+        <img src="assets/Paimon4.png" alt="Paimon graphic design 4" loading="lazy" />
+      </article>
+      <article class="card">
+        <img src="assets/Moon_Roses_Dagger.png" alt="Moon with roses and dagger" loading="lazy" />
+      </article>
+      <article class="card">
+        <img src="assets/Bat_Skull.png" alt="Bat with skull motif" loading="lazy" />
+      </article>
+      <article class="card">
+        <img src="assets/Adsum_Vocatus5.png" alt="Adsum Vocatus variant 5" loading="lazy" />
+      </article>
+    </section>
+
+    <!-- Bottom Ad Slot -->
+    <div class="ad-slot ad-bottom" aria-label="advertisement" role="complementary"></div>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> Adsum Vocatus • A Bran Beret Project</small>
+  </footer>
+
+  <script>
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Optional: lightweight hero background rotation (uses your real files)
+    const imagePaths = [
+      "assets/Adsum_Vocatus2.png",
+      "assets/Adsum_Vocatus5.png",
+      "assets/Adsum_Vocatus8.png",
+      "assets/Adsum_Vocatus11.png"
+    ];
+
+    const hero = document.getElementById('hero');
+    function setHeroBackground(src) {
+      hero.style.setProperty('--hero-image', `url("${src}")`);
+    }
+    // Pick a random image on load
+    setHeroBackground(imagePaths[Math.floor(Math.random() * imagePaths.length)]);
+  </script>
 </body>
 </html>

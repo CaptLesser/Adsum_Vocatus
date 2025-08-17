@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About • Adsum Vocatus</title>
+  <meta name="description" content="About the artist/designer behind Adsum Vocatus — skills, influences, and the demonology inspiration." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header (kept consistent with index) -->
+  <header>
+    <img src="Adsum_Vocatus11.png" alt="Adsum Vocatus" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="about.html">About</a></li>
+        <li><a href="demons.html">Demons</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- GATE 1 (opens to first content) -->
+    <section class="gate" aria-label="visual reveal">
+      <div class="gate-track">
+        <div class="gate-panel left" style="--gate-image:url('Moon_Roses_Dagger.png')"></div>
+        <div class="gate-panel right" style="--gate-image:url('Bat_Skull.png')"></div>
+        <div class="gate-scrim"></div>
+      </div>
+      <!-- Sentinels drive open/close via IntersectionObserver -->
+      <div class="io-sentinel open-after"></div>
+    </section>
+
+    <!-- CONTENT 1: demonology / design inspiration -->
+    <section class="about-section section-dark" id="inspiration">
+      <div class="container">
+        <h1 class="section-title">Inspiration & Demonology</h1>
+        <p class="lede">Your text goes here — what sparked the motif, the sigils, the lore, and how the visual language evolved.</p>
+        <div class="split">
+          <div>
+            <p><!-- add details --></p>
+            <p><!-- add details --></p>
+          </div>
+          <aside class="shadow-card">
+            <img src="Adsum_Vocatus8.png" alt="Sigil work detail" loading="lazy" />
+          </aside>
+        </div>
+      </div>
+      <div class="io-sentinel close-before"></div>
+    </section>
+
+    <!-- GATE 1 RE-CLOSE -->
+    <section class="gate gate-reclose" aria-hidden="true">
+      <div class="gate-track">
+        <div class="gate-panel left" style="--gate-image:url('Moon_Roses_Dagger.png')"></div>
+        <div class="gate-panel right" style="--gate-image:url('Bat_Skull.png')"></div>
+        <div class="gate-scrim"></div>
+      </div>
+      <div class="io-sentinel open-after"></div>
+    </section>
+
+    <!-- CONTENT 2: personal / skills -->
+    <section class="about-section section-plain" id="about-me">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="lede">Your personal background, ethos, and what you bring to collaborations.</p>
+
+        <div class="skillgrid">
+          <article class="skill">
+            <img src="Adsum_Vocatus2.png" alt="Design craft" loading="lazy" />
+            <h3>Design Craft</h3>
+            <p><!-- your copy --></p>
+          </article>
+          <article class="skill">
+            <img src="Adsum_Vocatus5.png" alt="Digital editing" loading="lazy" />
+            <h3>Digital Editing</h3>
+            <p><!-- your copy --></p>
+          </article>
+          <article class="skill">
+            <img src="Adsum_Vocatus11.png" alt="Web build" loading="lazy" />
+            <h3>Web Build</h3>
+            <p><!-- your copy --></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Adsum Vocatus</p>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Gate open/close via IntersectionObserver
+    // When ".open-after" enters: add .open on previous .gate
+    // When ".close-before" enters: add .close on following .gate (the re-close)
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return; // no motion for users who prefer less
+
+      const gates = document.querySelectorAll('.gate');
+      // open observers
+      const openObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const gate = entry.target.closest('section').previousElementSibling;
+            if (gate && gate.classList.contains('gate')) {
+              gate.classList.add('open');
+            }
+          }
+        });
+      }, { threshold: 0.4 });
+
+      // close observers
+      const closeObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const nextGate = entry.target.closest('section').nextElementSibling;
+            if (nextGate && nextGate.classList.contains('gate')) {
+              nextGate.classList.remove('open'); // ensure closed first
+              nextGate.classList.add('close');
+            }
+          }
+        });
+      }, { threshold: 0.35 });
+
+      document.querySelectorAll('.open-after').forEach(s => openObs.observe(s));
+      document.querySelectorAll('.close-before').forEach(s => closeObs.observe(s));
+
+      // Fallback: ensure first gate is closed at start
+      gates.forEach(g => { g.classList.remove('open'); g.classList.remove('close'); });
+    })();
+  </script>
+</body>
+</html>
